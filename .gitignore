@@ -36,3 +36,4 @@ CLAUDE.md
 AI_SHARED_MEMORY.md
 __pycache__/
 *.py[cod]
+.vercel
