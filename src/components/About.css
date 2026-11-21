@@ -1,0 +1,341 @@
+.about {
+  padding: 120px 80px;
+  background: #0a0907;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background grid lines */
+.about-grid-lines {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.about-grid-line {
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(201, 168, 76, 0.04), transparent);
+}
+
+/* Visual */
+.about-visual {
+  position: relative;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3D Layered Frames */
+.about-frame {
+  position: absolute;
+  border: 1px solid var(--line);
+}
+
+.about-frame--3 {
+  position: absolute;
+  inset: -16px;
+  opacity: 0.3;
+  transform: perspective(800px) rotateY(-3deg) rotateX(2deg);
+}
+
+.about-frame--2 {
+  position: absolute;
+  inset: -8px;
+  opacity: 0.5;
+  transform: perspective(800px) rotateY(-2deg) rotateX(1deg);
+}
+
+.about-frame--1 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #13110d;
+  transform: perspective(800px) rotateY(-1deg);
+  transition: transform 0.5s ease;
+  overflow: hidden;
+}
+
+.about-frame--1:hover {
+  transform: perspective(800px) rotateY(0deg) scale(1.01);
+}
+
+.about-frame-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+}
+
+/* Rotating ring SVG */
+.about-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -130px;
+  margin-left: -130px;
+  width: 260px;
+  height: 260px;
+  animation: slowSpin 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes slowSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Emblem */
+.about-emblem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.about-emblem-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-emblem-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2a2010, #1a1508);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.35),
+    0 0 0 12px rgba(201, 168, 76, 0.06),
+    0 0 60px rgba(201, 168, 76, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.about-emblem-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.about-emblem-text {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--charcoal);
+  letter-spacing: 0.08em;
+}
+
+.about-emblem-sub {
+  font-family: var(--serif);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  opacity: 0.7;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Badge */
+.about-badge {
+  position: absolute;
+  bottom: -16px;
+  right: -16px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  box-shadow: 0 8px 32px rgba(201, 168, 76, 0.3);
+  z-index: 2;
+}
+
+.about-badge-num {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--charcoal);
+  line-height: 1;
+}
+
+.about-badge-label {
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  opacity: 0.65;
+}
+
+/* Floating gem */
+.about-float-gem {
+  position: absolute;
+  top: 24px;
+  left: -12px;
+  font-size: 28px;
+  color: var(--gold);
+  opacity: 0.4;
+  animation: gemFloat 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(201, 168, 76, 0.4));
+}
+
+@keyframes gemFloat {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(15deg);
+  }
+}
+
+/* Text Side */
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.about-body {
+  font-size: 15px;
+  line-height: 2.1;
+  color: rgba(250, 247, 240, 0.5);
+  letter-spacing: 0.03em;
+  margin: 28px 0 44px;
+}
+
+/* Values grid */
+.about-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.about-value {
+  padding: 24px;
+  border: 1px solid var(--line);
+  transition: border-color 0.35s ease, background 0.35s ease;
+}
+
+.about-value:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+  background: rgba(201, 168, 76, 0.03);
+}
+
+.about-value-icon {
+  font-size: 18px;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.about-value-name {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--ivory);
+  margin-bottom: 8px;
+}
+
+.about-value-desc {
+  font-size: 13px;
+  color: var(--warm-gray);
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .about {
+    grid-template-columns: 1fr;
+    padding: 80px 32px;
+    gap: 56px;
+  }
+
+  .about-visual {
+    height: 380px;
+  }
+}
+
+@media (max-width: 600px) {
+  .about {
+    padding: 68px 18px;
+    gap: 44px;
+  }
+
+  .about-visual {
+    height: 270px;
+  }
+
+  .about-badge {
+    width: 88px;
+    height: 88px;
+    bottom: -12px;
+    right: 8px;
+  }
+
+  .about-badge-num {
+    font-size: 24px;
+  }
+
+  .about-values {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .about-value {
+    padding: 18px 14px;
+    border-radius: 6px;
+  }
+
+  .about-value-name {
+    font-size: 18px;
+  }
+
+  .about-value-desc {
+    font-size: 12.5px;
+    line-height: 1.6;
+  }
+
+  .about-frame--2,
+  .about-frame--3 {
+    display: none;
+  }
+
+  .about-body {
+    font-size: 14px;
+    line-height: 1.9;
+    margin: 20px 0 32px;
+  }
+}

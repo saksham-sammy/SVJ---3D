@@ -1,0 +1,124 @@
+.testimonials {
+  padding: 140px 80px;
+  background: #080705;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative giant quote */
+.testimonials-quote {
+  position: absolute;
+  top: -60px;
+  left: 60px;
+  font-family: var(--serif);
+  font-size: 500px;
+  font-weight: 300;
+  color: var(--gold);
+  opacity: 0.018;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.testimonials-header {
+  margin-bottom: 64px;
+}
+
+/* Grid */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+
+/* Cards */
+.testi-card {
+  padding: 48px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s, border-color 0.4s, transform 0.4s;
+}
+.testi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.testi-card:hover {
+  background: rgba(255,255,255,0.04) !important;
+  border-color: rgba(201,168,76,0.2) !important;
+  transform: translateY(-3px);
+}
+.testi-card:hover::before { opacity: 1; }
+
+.testi-stars {
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 3px;
+  margin-bottom: 22px;
+}
+.testi-text {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.85;
+  color: rgba(250,247,240,0.82);
+  margin-bottom: 30px;
+}
+.testi-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.testi-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--charcoal);
+  flex-shrink: 0;
+  font-weight: 500;
+}
+.testi-name {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  font-weight: 400;
+  color: var(--ivory);
+}
+.testi-loc {
+  font-size: 10px;
+  color: var(--warm-gray);
+  letter-spacing: 0.1em;
+  margin-top: 3px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .testimonials { padding: 72px 24px; }
+  .testimonials-header { margin-bottom: 36px; }
+  .testimonials-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 14px;
+    margin: 0 -24px;
+    padding: 4px 24px 18px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .testimonials-grid::-webkit-scrollbar { display: none; }
+  .testi-card { flex: 0 0 82vw; max-width: 310px; scroll-snap-align: start; padding: 32px 24px; border-radius: 8px; }
+}
+@media (max-width: 500px) {
+  .testimonials { padding: 68px 18px; }
+  .testimonials-grid { margin: 0 -18px; padding: 4px 18px 18px; }
+}

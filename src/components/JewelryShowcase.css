@@ -1,0 +1,268 @@
+.jewelry-showcase {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+/* Base Glow behind the 3D model */
+.jewelry-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  pointer-events: none;
+}
+
+.jewelry-showcase.hovered .jewelry-glow {
+  transform: translate(-50%, -50%) scale(1.6);
+  opacity: 0.4;
+}
+
+/* 3D Container */
+.spline-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spline-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: auto; /* Let users interact with the 3D model */
+  z-index: 2;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Loading State */
+.spline-loader {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 5;
+  color: var(--gold-light);
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.loader-ring {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(201,168,76,0.2);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Hover Hint */
+.showcase-hover-hint {
+  position: absolute;
+  bottom: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: rgba(201, 168, 76, 0.5);
+  text-transform: uppercase;
+  z-index: 30;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+.jewelry-showcase.hovered .showcase-hover-hint {
+  opacity: 0; /* Hide when hovered since details are already shown */
+}
+
+/* Navigation System */
+.showcase-nav {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  z-index: 30;
+  pointer-events: auto;
+}
+
+.nav-btn {
+  background: rgba(14,13,10,0.5);
+  border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold-light);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+  transform: scale(1.1);
+}
+
+.item-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.item-name {
+  font-family: var(--serif);
+  color: var(--gold-light);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(250,247,240,0.2);
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: var(--gold);
+  transform: scale(1.5);
+}
+
+/* Reactive Hotspots (Igloo.inc style expanding panels) */
+.reactive-hotspot {
+  position: absolute;
+  z-index: 40;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  pointer-events: none; /* Let clicks pass through to 3D if needed, or set to auto if interactive */
+}
+
+/* Reverse layout if hotspot is on the right side */
+.reactive-hotspot[style*="right"] {
+  flex-direction: row-reverse;
+}
+
+.hotspot-core {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.core-dot {
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--gold);
+}
+
+.core-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  animation: radarPulse 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@keyframes radarPulse {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.hotspot-panel {
+  background: rgba(14,13,10,0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 8px;
+  overflow: hidden; /* Important for the width expansion animation */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  white-space: nowrap; /* Keep content in one line while expanding */
+}
+
+.panel-content {
+  padding: 12px 16px;
+  min-width: 180px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.panel-icon {
+  color: var(--gold);
+}
+
+.panel-title {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--gold-light);
+}
+
+.panel-desc {
+  font-size: 11px;
+  color: rgba(250,247,240,0.7);
+  white-space: normal; /* Allow text to wrap once fully expanded */
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .showcase-nav {
+    bottom: 20px;
+    gap: 16px;
+  }
+  
+  .nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .item-name {
+    font-size: 12px;
+  }
+  
+  .reactive-hotspot {
+    transform: scale(0.8);
+  }
+}
+
